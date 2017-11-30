@@ -5,7 +5,7 @@ import { AppContainer } from 'react-hot-loader'
 
 import './css/app.css'
 
-import App from './components/App.js'
+import App from './App.js'
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer>
@@ -18,9 +18,9 @@ const render = (Component) => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('./components/App.js', () => {
+  module.hot.accept('./App.js', () => {
     setTimeout(() => {
-      const NewApp = require('./components/App.js').default
+      const NewApp = require('./App.js').default
       render(NewApp)
     }, 1)
   })
