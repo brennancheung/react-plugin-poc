@@ -6,3 +6,10 @@ export const identity = x => x
 export const map = fn => arr => arr.map(fn)
 export const tap = fn => x => { fn(x); return x }
 export const log = x => console.log(x)
+
+// onlyKeys('a', 'b')({ a: 1, b: 2, c: 3 }) => { a: 1, b: 2 }
+export const onlyKeys = (...keys) => obj =>
+  keys.reduce(
+    (accum, key) => ({ ...accum, [key]: obj[key] }),
+    {}
+  )

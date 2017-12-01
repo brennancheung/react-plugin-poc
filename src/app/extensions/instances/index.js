@@ -1,6 +1,7 @@
 import React from 'react'
+import Typography from 'material-ui/Typography'
 
-const Instances = () => <h1>This is the Instances page</h1>
+const Instances = () => <Typography type="headline">This is the Instances page</Typography>
 
 const extension = {
   name: 'instances',

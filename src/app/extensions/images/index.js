@@ -1,6 +1,7 @@
 import React from 'react'
+import Typography from 'material-ui/Typography'
 
-const Images = () => <h1>This is the Images page</h1>
+const Images = () => <Typography type="headline">This is the Images page</Typography>
 
 const extension = {
   name: 'images',

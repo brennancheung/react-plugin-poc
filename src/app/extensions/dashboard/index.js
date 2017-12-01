@@ -1,6 +1,7 @@
 import React from 'react'
+import Typography from 'material-ui/Typography'
 
-const Dashboard = () => <h1>This is the Dashboard page</h1>
+const Dashboard = () => <Typography type="headline">This is the Dashboard page</Typography>
 
 const extension = {
   name: 'dashboard',

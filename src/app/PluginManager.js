@@ -1,11 +1,16 @@
 import React from 'react'
 import { flatten } from 'lodash'
+
 import {
   Link,
   Switch,
   Route
 } from 'react-router-dom'
-import { pluck } from './util/fp'
+
+import {
+  onlyKeys,
+  pluck
+} from './util/fp'
 
 const renderPageLink = (page, idx) => (
   <li key={idx}><Link to={page.link}>{page.name}</Link></li>
@@ -26,6 +31,8 @@ function PluginManager () {
   const getAllPages = () => flatten(plugins.map(pluck('pages')))
 
   return {
+    getNavLinks: () => getAllPages().map(onlyKeys('link', 'name')),
+
     registerPlugin: (plugin) => {
       plugins.push(plugin)
     },
