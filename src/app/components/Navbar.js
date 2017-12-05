@@ -99,12 +99,9 @@ const styles = theme => ({
 @withRouter
 @withStyles(styles, { withTheme: true })
 class Navbar extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      open: false,
-      anchor: 'left',
-    }
+  state = {
+    open: true,
+    anchor: 'left',
   }
 
   handleDrawerOpen = () => {

@@ -1,6 +1,7 @@
 import express from 'express'
 import http from 'http'
 import path from 'path'
+import open from 'open'
 
 const app = express()
 const port = 3000
@@ -33,6 +34,7 @@ if (isDev) {
       colors: true
     }
   })
+  webpackDevMiddleware.waitUntilValid(() => { open(`http://localhost:${port}`) })
   const webpackHotMiddleware = require('webpack-hot-middleware')(compiler)
 
   app.use(webpackDevMiddleware)
