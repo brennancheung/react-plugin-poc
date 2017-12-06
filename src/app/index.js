@@ -1,14 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
 import './css/app.css'
 import App from './App.js'
 
-const reducer = (state, action) => state
-const store = createStore(reducer)
+const initialState = {
+  theme: 'light'
+}
+
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+  console.log(action)
+  switch (type) {
+    case 'SET_THEME':
+      return { ...state, theme: payload }
+
+    default:
+      return state
+  }
+}
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk)
+)
 
 const render = (Component) => {
   ReactDOM.render(

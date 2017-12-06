@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
 
 import manager from './PluginManager'
 import dashboardExtension from './extensions/dashboard'
@@ -9,13 +8,7 @@ import instancesExtension from './extensions/instances'
 import pluginLoaderExtension from './extensions/pluginLoader'
 import mockInfrastructureExtension from './extensions/mockInfrastructure'
 
-import Navbar from './components/Navbar'
-
-const theme = createMuiTheme({
-  palette: {
-    type: 'light'
-  }
-})
+import Main from './Main'
 
 class App extends React.Component {
   state = { loaded: false }
@@ -42,13 +35,10 @@ class App extends React.Component {
   }
 
   render () {
-    const { getNavLinks, RouteMatcher } = manager
     return (
-      <MuiThemeProvider theme={theme}>
-        <Router>
-          <Navbar links={getNavLinks()} component={<RouteMatcher />} />
-        </Router>
-      </MuiThemeProvider>
+      <Router>
+        <Main extensionManager={manager} />
+      </Router>
     )
   }
 }

@@ -34,6 +34,11 @@ function PluginManager () {
     getNavLinks: () => getAllPages().map(onlyKeys('link', 'name')),
 
     registerPlugin: (plugin) => {
+      const existingPluginNames = plugins.map(pluck('name'))
+      if (existingPluginNames.includes(plugin.name)) {
+        console.info(`Skipping plugin ${plugin.name} because it is already registered`)
+        return
+      }
       plugins.push(plugin)
     },
 

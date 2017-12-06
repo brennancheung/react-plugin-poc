@@ -2,18 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
 import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 
 import classNames from 'classnames'
-import Drawer from 'material-ui/Drawer'
+
 import AppBar from 'material-ui/AppBar'
-import Toolbar from 'material-ui/Toolbar'
-import { ListItemText } from 'material-ui/List'
-import { MenuItem, MenuList } from 'material-ui/Menu'
-import Typography from 'material-ui/Typography'
+import Button from 'material-ui/Button'
+import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
 import Divider from 'material-ui/Divider'
+import Drawer from 'material-ui/Drawer'
+import Grid from 'material-ui/Grid'
 import IconButton from 'material-ui/IconButton'
 import MenuIcon from 'material-ui-icons/Menu'
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft'
+import Toolbar from 'material-ui/Toolbar'
+import Typography from 'material-ui/Typography'
+import { ListItemText } from 'material-ui/List'
+import { MenuItem, MenuList } from 'material-ui/Menu'
 
 const drawerWidth = 240
 
@@ -96,8 +100,9 @@ const styles = theme => ({
   },
 })
 
-@withRouter
 @withStyles(styles, { withTheme: true })
+@withRouter
+@connect(state => ({ theme: state.theme }))
 class Navbar extends React.Component {
   state = {
     open: true,
@@ -120,6 +125,8 @@ class Navbar extends React.Component {
     <MenuItem onClick={this.navTo(link)} key={link}><ListItemText primary={name} /></MenuItem>
   )
 
+  setTheme = theme => () => this.props.dispatch({ type: 'SET_THEME', payload: theme })
+
   render () {
     const { classes, component, links } = this.props
     const { open } = this.state
@@ -140,6 +147,11 @@ class Navbar extends React.Component {
           <Divider />
           <MenuList>
             {links.map(this.renderNavLink)}
+          </MenuList>
+          <Divider />
+          <MenuList>
+            <MenuItem onClick={this.setTheme('light')}><Button>Light theme</Button></MenuItem>
+            <MenuItem onClick={this.setTheme('dark')}><Button>Dark theme</Button></MenuItem>
           </MenuList>
         </div>
       </Drawer>
@@ -174,7 +186,9 @@ class Navbar extends React.Component {
               [classes['contentShift-left']]: open,
             })}
           >
-            {component}
+            <Grid container>
+              {component}
+            </Grid>
           </main>
         </div>
       </div>
