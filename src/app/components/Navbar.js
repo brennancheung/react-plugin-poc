@@ -105,7 +105,7 @@ const styles = theme => ({
 @connect(state => ({ theme: state.theme }))
 class Navbar extends React.Component {
   state = {
-    open: false,
+    open: true,
     anchor: 'left',
   }
 

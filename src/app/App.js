@@ -7,6 +7,7 @@ import imagesExtension from './extensions/images'
 import instancesExtension from './extensions/instances'
 import pluginLoaderExtension from './extensions/pluginLoader'
 import mockInfrastructureExtension from './extensions/mockInfrastructure'
+import loginExtension from './extensions/login'
 
 import Main from './Main'
 
@@ -20,6 +21,7 @@ class App extends React.Component {
     manager.registerPlugin(instancesExtension)
     manager.registerPlugin(pluginLoaderExtension)
     manager.registerPlugin(mockInfrastructureExtension)
+    manager.registerPlugin(loginExtension)
   }
 
   // The external extension will have access to this method to pass the
