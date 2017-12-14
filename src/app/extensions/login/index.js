@@ -4,10 +4,11 @@ import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
 import Typography from 'material-ui/Typography'
 
+import { connect } from 'react-redux'
+
 import {
-  getScopedProjects,
-  getUnscopedToken
-} from '../../api/keystone'
+  login
+} from '../../actions/keystone'
 
 const paperStyle = { padding: '2em' }
 const LoginForm = ({ username, password, handleChange, logIn }) => (
@@ -36,6 +37,11 @@ const LoginForm = ({ username, password, handleChange, logIn }) => (
   </div>
 )
 
+@connect(
+  state => ({
+    unscopedToken: state.unscopedToken
+  })
+)
 class LoginContainer extends React.Component {
   state = {
     username: '',
@@ -46,18 +52,20 @@ class LoginContainer extends React.Component {
 
   logIn = async () => {
     const { username, password } = this.state
-    const token = await getUnscopedToken({ username, password })
-    const tenants = await getScopedProjects({ token })
-    console.log(tenants)
+    const { dispatch } = this.props
+    await dispatch(login({ username, password }))
   }
 
   render () {
     return (
-      <LoginForm
-        {...this.state}
-        handleChange={this.handleChange}
-        logIn={this.logIn}
-      />
+      <div>
+        <LoginForm
+          {...this.state}
+          handleChange={this.handleChange}
+          logIn={this.logIn}
+        />
+        Unscoped token: {this.props.unscopedToken}
+      </div>
     )
   }
 }

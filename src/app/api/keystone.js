@@ -23,10 +23,9 @@ export const getUnscopedToken = async ({ username, password }) => {
   return token
 }
 
-export const getScopedProjects = async ({ token }) => {
-  console.log('getScopedProjects')
-  const config = { headers: { 'X-Auth-Token': token } }
+export const getScopedProjects = async unscopedToken => {
+  const config = { headers: { 'X-Auth-Token': unscopedToken } }
   const response = await get(`${baseUrl}/auth/projects`, config)
   const projects = await response.json()
-  return projects
+  return projects.projects
 }

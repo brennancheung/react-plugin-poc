@@ -4,7 +4,6 @@ const defaultHeaders = {
 }
 
 export const get = (url, config = {}) => {
-  console.log('Get aPI call')
   const request = {
     method: 'GET',
     headers: { ...defaultHeaders, ...config.headers },

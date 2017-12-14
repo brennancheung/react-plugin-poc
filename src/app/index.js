@@ -4,6 +4,10 @@ import { AppContainer } from 'react-hot-loader'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import {
+  SET_THEME,
+  SET_UNSCOPED_TOKEN
+} from './constants'
 
 import './css/app.css'
 import App from './App.js'
@@ -16,8 +20,11 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action
   console.log(action)
   switch (type) {
-    case 'SET_THEME':
+    case SET_THEME:
       return { ...state, theme: payload }
+
+    case SET_UNSCOPED_TOKEN:
+      return { ...state, unscopedToken: payload }
 
     default:
       return state
