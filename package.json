@@ -4,6 +4,7 @@
   "description": "A POC for a React plugin architecture",
   "main": "webpack.config.js",
   "dependencies": {
+    "EventEmitter": "^1.0.0",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "material-ui": "^1.0.0-beta.22",

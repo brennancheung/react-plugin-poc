@@ -25,6 +25,11 @@ const renderPageRoute = (page, idx) => {
   return <Route key={idx} {...routeParams} />
 }
 
+const renderEventHandler = (plugin, idx) => {
+  const Handler = plugin.eventHandlerComponent
+  return Handler ? <Handler key={idx} /> : null
+}
+
 function PluginManager () {
   let plugins = []
 
@@ -52,6 +57,12 @@ function PluginManager () {
       <ul>
         {getAllPages().map(renderPageLink)}
       </ul>
+    ),
+
+    EventHandlers: () => (
+      <div>
+        {plugins.map(renderEventHandler)}
+      </div>
     )
   }
 }

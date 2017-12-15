@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
+// import PropTypes from 'prop-types'
 
 import manager from './PluginManager'
 import dashboardExtension from './extensions/dashboard'
@@ -8,13 +9,14 @@ import instancesExtension from './extensions/instances'
 import pluginLoaderExtension from './extensions/pluginLoader'
 import mockInfrastructureExtension from './extensions/mockInfrastructure'
 import loginExtension from './extensions/login'
+import openStackExtension from './extensions/openStack'
 
 import Main from './Main'
 
 class App extends React.Component {
   state = { loaded: false }
 
-  componentWillMount () {
+  componentWillMount = () => {
     window.define = this.define
     manager.registerPlugin(dashboardExtension)
     manager.registerPlugin(imagesExtension)
@@ -22,6 +24,7 @@ class App extends React.Component {
     manager.registerPlugin(pluginLoaderExtension)
     manager.registerPlugin(mockInfrastructureExtension)
     manager.registerPlugin(loginExtension)
+    manager.registerPlugin(openStackExtension)
   }
 
   // The external extension will have access to this method to pass the

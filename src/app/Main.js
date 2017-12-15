@@ -16,11 +16,16 @@ class Main extends React.Component {
     })
 
     const { extensionManager } = this.props
-    const { getNavLinks, RouteMatcher } = extensionManager
+    const {
+      EventHandlers,
+      getNavLinks,
+      RouteMatcher,
+    } = extensionManager
 
     return (
       <MuiThemeProvider theme={theme}>
         <Navbar links={getNavLinks()} component={<RouteMatcher />} />
+        <EventHandlers />
       </MuiThemeProvider>
     )
   }

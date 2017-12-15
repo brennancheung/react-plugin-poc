@@ -1,4 +1,5 @@
 import React from 'react'
+// import PropTypes from 'prop-types'
 import Button from 'material-ui/Button'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField'
@@ -39,7 +40,8 @@ const LoginForm = ({ username, password, handleChange, logIn }) => (
 
 @connect(
   state => ({
-    unscopedToken: state.unscopedToken
+    eventEmitter: state.eventEmitter,
+    unscopedToken: state.unscopedToken,
   })
 )
 class LoginContainer extends React.Component {
@@ -52,8 +54,9 @@ class LoginContainer extends React.Component {
 
   logIn = async () => {
     const { username, password } = this.state
-    const { dispatch } = this.props
+    const { eventEmitter, dispatch } = this.props
     await dispatch(login({ username, password }))
+    eventEmitter.emit('login')
   }
 
   render () {
